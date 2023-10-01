@@ -1,10 +1,13 @@
 def difference_of_words(w1, w2):
-    if not w1.isalpha() or not w2.isalpha(): return "Only letters of the english alphabet please\n"
+    if not w1.isalpha() or not w2.isalpha(): 
+        return "\nOnly letters of the english alphabet please\n"
 
+# listing
     l_both = []
     l_unique = []
     alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+# processing
     class word:
         def __init__(self, word) -> None:
             self.word = word
@@ -13,6 +16,7 @@ def difference_of_words(w1, w2):
             self.value = 0
             self.most_occuring_letter = []
             self.lettercount = {}
+            self.alphabetic = None
 
         def processing(self):
             for i in self.word.lower():
@@ -22,6 +26,16 @@ def difference_of_words(w1, w2):
             
             self.most_occuring_letter = max(self.lettercount, key=self.lettercount.get)
             self.characters.sort()
+            self.isalphabetic()
+
+        def isalphabetic(self):
+            val = 0
+            for e in self.word.lower():
+                if alphabet.index(e) < val: 
+                    self.alphabetic = False
+                    break
+                val = alphabet.index(e)
+                self.alphabetic = True
 
     word1 = word(w1)
     word2 = word(w2)
@@ -64,12 +78,14 @@ def difference_of_words(w1, w2):
             characters: {word1.characters}
             value: {word1.value}
             most prominent/occuring letter: '{word1.most_occuring_letter}' ({word1.lettercount.get(word1.most_occuring_letter)}x)
+            letters are in alphabetical order: {word1.alphabetic}
             \n
             Word two: 
             lenght: {word2.lenght}
             characters: {word2.characters}
             value: {word2.value}
             most prominent/occuring letter: '{word2.most_occuring_letter}' ({word2.lettercount.get(word2.most_occuring_letter)}x)
+            letters are in alphabetical order: {word2.alphabetic}
             \n
             Comparison:
             {wl}
