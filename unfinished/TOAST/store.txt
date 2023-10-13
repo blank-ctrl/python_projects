@@ -1,1 +1,2 @@
-YAK
+yes 23 \n
+no 1 \n
