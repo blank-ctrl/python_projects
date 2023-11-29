@@ -1,7 +1,16 @@
+def getin(inpt):
+    correctio = input(f'Is "{inpt.lower()}" correct? (Y/N)\n')
+    if correctio.lower() == "y":
+        counted = input("Do you want it to be added to the list? (Y/N)\n")
+        if counted.lower() == "y": truth = True
+        else: truth = False 
+        return [inpt.lower(), truth]
+    else: return getin(input("Write the first word that comes to mind:\n"))
+
 # T.O.A.S.T. stands for "Think Of Any Shit Thing" (yeah it is a work in progress name)
 
 def toast_v1():
-    new = []
+    new = {}
     text = ""
 
     st = open("store.txt", "r")
@@ -9,29 +18,38 @@ def toast_v1():
     st.close()
 
     for line in prior:
-        print(line)
-        string = True
+        a = ""
         b = ""
-        w = ""
+        x = True
         for thing in line:
-            print(thing)
-            if thing.isnumeric() and string: 
-                w = w + thing
-                string = False
-            elif thing.isnumeric():
-                w = w + thing  
-            else: b = b + thing
+            try: 
+                int(thing)
+                b += thing
+                x = False
+            except ValueError: 
+                if x == False: break
+            if thing != " " and x: a += thing
+        
+        new.update({a: int(b)})
 
-        new.append([b, w]) # need to add dict instead of list + checker for key and value
+    new_word = getin(input("Write the first word that comes to mind:\n"))
+    if new_word[1]:
+        if new_word[0] in new: new[new_word[0]] += 1
+        else: 
+            item = {new_word[0]: 1}
+            new.update(item)
 
     for stuff in new:
-        stop = False
-        for data in stuff:
-            if stop: text = text + data
-            else:
-                text = text + f"\n {data} "
-                stop = True # doesnt works as intended
+        text += stuff + " " + str(new.get(stuff)) + "\n"
 
+    lt = open("store.txt", "w")
+    lt.write(text)
+    lt.close
     print(text)
 
+    # add sorting + better ui
+    # rest works fine
+
+
 toast_v1()
+
