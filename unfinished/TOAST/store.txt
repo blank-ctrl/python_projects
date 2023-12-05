@@ -1,3 +1,4 @@
 no 24
 yes 3
 hello 1
+wort 1

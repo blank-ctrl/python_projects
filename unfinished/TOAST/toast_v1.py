@@ -1,3 +1,5 @@
+from sort_dict import *
+
 def getin(inpt):
     correctio = input(f'Is "{inpt.lower()}" correct? (Y/N)\n')
     if correctio.lower() == "y":
@@ -12,6 +14,7 @@ def getin(inpt):
 def toast_v1():
     new = {}
     text = ""
+    output_text = ""
 
     st = open("store.txt", "r")
     prior = st.readlines()
@@ -45,9 +48,13 @@ def toast_v1():
     lt = open("store.txt", "w")
     lt.write(text)
     lt.close
-    print(text)
+    
+    sorted_new = sort_dict(new)
+    output_text = sorted_new
 
-    # add sorting + better ui
+    print(output_text)
+
+    # add sorting (look at stuff in new) + better ui
     # rest works fine
 
 
