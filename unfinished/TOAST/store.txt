@@ -1,4 +1,8 @@
 no 24
 yes 3
-hello 1
+hello 5
 wort 1
+bitch 2
+fuck 1
+gross 1
+again 1

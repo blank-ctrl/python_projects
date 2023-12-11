@@ -1,13 +1,17 @@
 from sort_dict import *
 
 def getin(inpt):
-    correctio = input(f'Is "{inpt.lower()}" correct? (Y/N)\n')
-    if correctio.lower() == "y":
-        counted = input("Do you want it to be added to the list? (Y/N)\n")
-        if counted.lower() == "y": truth = True
-        else: truth = False 
-        return [inpt.lower(), truth]
-    else: return getin(input("Write the first word that comes to mind:\n"))
+    if inpt.isalpha(): 
+        correctio = input(f'Is "{inpt.lower()}" correct? (Y/N)\n')
+        if correctio.lower() == "y":
+            counted = input("Do you want it to be added to the list? (Y/N)\n")
+            if counted.lower() == "y": truth = True
+            else: truth = False 
+            return [inpt.lower(), truth]
+        else: return getin(input("Write the first word that comes to mind:\n"))
+    else: 
+        print("\n Only words are allowed! \n")
+        getin()
 
 # T.O.A.S.T. stands for "Think Of Any Shit Thing" (yeah it is a work in progress name)
 
@@ -49,12 +53,9 @@ def toast_v1():
     lt.write(text)
     lt.close
     
-    sorted_new = sort_dict(new)
-    output_text = sorted_new
+    new_new = sorted(new.items(), key=lambda x:x[1], reverse=True)
 
-    print(output_text)
-
-    # add sorting (look at stuff in new) + better ui
+    # add output (somehow)
     # rest works fine
 
 
