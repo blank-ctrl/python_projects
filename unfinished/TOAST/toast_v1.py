@@ -13,12 +13,13 @@ def getin(inpt):
         print("\n Only words are allowed! \n")
         getin()
 
-# T.O.A.S.T. stands for "Think Of Any Shit Thing" (yeah it is a work in progress name)
+# T.O.A.S.T. stands for "Think Of Any Senseless Thing" (wip name -_-)
 
 def toast_v1():
     new = {}
     text = ""
-    output_text = ""
+    output_text = "\n"
+    max_len = 0
 
     st = open("store.txt", "r")
     prior = st.readlines()
@@ -55,9 +56,34 @@ def toast_v1():
     
     new_new = sorted(new.items(), key=lambda x:x[1], reverse=True)
 
-    # add output (somehow)
-    # rest works fine
+    for i in new_new:
+        if len(i[0]) > max_len: 
+            max_len = len(i[0])
 
+    for i in new_new:
+        if new_new.index(i) < 9:
+            emptyness = max_len-len(i[0])
+            output_text += f"{new_new.index(i)+1}.  {i[0]}"
+            while emptyness:
+                output_text += " "
+                emptyness -= 1
+            output_text += f" ({i[1]}x)\n"
+
+            if new_new.index(i) == 2:
+                output_text += "Top 3 –––––\n"
+
+        elif new_new.index(i) == 9:
+            emptyness = max_len-len(i[0])
+            output_text += f"{new_new.index(i)+1}. {i[0]}"
+            while emptyness:
+                output_text += " "
+                emptyness -= 1
+            output_text += f" ({i[1]}x)\n"
+            output_text += "Top 10 –––––\n"
+
+    print(output_text)
+    
+    #works nicely
 
 toast_v1()
 
