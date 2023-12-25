@@ -1,9 +1,8 @@
 try:
-    import customtkinter
-    from datetime import datetime
+    import customtkinter as ctk
 except ModuleNotFoundError:
     print("Not all modules are installed")
-    print("Modules needed: customtkinter, datetime")
+    print("Modules needed: customtkinter")
     print("Check if these are installed on your device")
 
 def darkmode():
@@ -11,20 +10,30 @@ def darkmode():
     
     print(switch_var.get())
     if switch_var.get() == 'on':
-        customtkinter.set_appearance_mode("dark")
-        print(f"{now} \nDarkmode state: on\n")
+        ctk.set_appearance_mode("dark")
     elif switch_var.get() == 'off':
-        customtkinter.set_appearance_mode("light")
-        print(f"{now} \nDarkmode state: off\n")
+        ctk.set_appearance_mode("light")
 
 if __name__ == '__main__':
 
-    app = customtkinter.CTk()
-    app.geometry("400x150")
-    switch_var = customtkinter.StringVar(value="on")
-    switch = customtkinter.CTkSwitch(app, text="enable darkmode", command=darkmode,
-                                    variable=switch_var, onvalue="on", offvalue="off")
-    switch.pack(padx=0, pady=0)
+    app = ctk.CTk()
+    app.geometry("1680x645")
+
+    switch_var = ctk.StringVar(value="on")
+
+    frame1 = ctk.CTkFrame(app, 
+                          fg_color=("white", "black"),
+                          height=645,
+                          width=40)
+    frame1.pack(padx=0, pady=0)
+
+    switch1 = ctk.CTkSwitch(frame1,
+                            text="enable darkmode",
+                            command=darkmode,
+                            variable=switch_var,
+                            onvalue="on",
+                            offvalue="off")
+    switch1.pack(padx=0, pady=0)
 
     app.mainloop()
     
