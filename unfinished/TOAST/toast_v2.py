@@ -11,25 +11,29 @@ def darkmode():
     elif switch_var.get() == 'off':
         ctk.set_appearance_mode("light")
 
-if __name__ == '__main__':
-    app = ctk.CTk()
-    app.geometry("1680x645")
 
+if __name__ == "__main__":
+    app = ctk.CTk()
+    app.geometry("500x645")
     switch_var = ctk.StringVar(value="on")
 
-    frame1 = ctk.CTkFrame(app, 
-                          fg_color=("white", "black"),
-                          height=645,
-                          width=40)
-    frame1.pack(padx=0, pady=0)
+    frame1 = ctk.CTkFrame(app,
+                          height=600,
+                          width=450,
+                          fg_color=("#d0d0f5", "#6a6a8f"))
+    frame1.grid(row=0, column=0,padx=10, pady=10, ipadx=10, ipady=10)
 
-    switch1 = ctk.CTkSwitch(frame1,
-                            text="enable darkmode",
-                            command=darkmode,
-                            variable=switch_var,
-                            onvalue="on",
-                            offvalue="off")
-    switch1.pack(padx=0, pady=0)
+    sw1 = ctk.CTkSwitch(frame1, 
+                        fg_color="red",
+                        button_color="#808080",
+                        progress_color="#00ff7f",
+                        command=darkmode,
+                        variable=switch_var,
+                        onvalue="on",
+                        offvalue="off",
+                        text="Enable Darkmode")
+    sw1.grid(row=0, column=0, padx=10, pady=10)
+    
 
     app.mainloop()
     
