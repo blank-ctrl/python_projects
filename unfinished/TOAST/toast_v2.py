@@ -5,17 +5,13 @@ except ModuleNotFoundError:
     print("Modules needed: customtkinter")
     print("Check if these are installed on your device")
 
-def darkmode():
-    now = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
-    
-    print(switch_var.get())
+def darkmode():    
     if switch_var.get() == 'on':
         ctk.set_appearance_mode("dark")
     elif switch_var.get() == 'off':
         ctk.set_appearance_mode("light")
 
 if __name__ == '__main__':
-
     app = ctk.CTk()
     app.geometry("1680x645")
 
