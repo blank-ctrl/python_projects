@@ -15,7 +15,7 @@ def darkmode():
 
 # fetching and replacing data (≈toast_v1)
 def toasting():
-    ingoing = entr1.get().strip()
+    ingoing = entr1.get()
     new = {}
     text = ""
     max_len = 0
@@ -44,11 +44,11 @@ def toasting():
     
     # adding new word to txt
     new_word = ingoing
-    if new_word[1]:
-        if new_word[0] in new: new[new_word[0]] += 1
-        else: 
-            item = {new_word[0]: 1}
-            new.update(item)
+    if new_word in new:
+        new[new_word] += 1
+    else: 
+        item = {new_word: 1}
+        new.update(item)
 
     for stuff in new:
         text += stuff + " " + str(new.get(stuff)) + "\n"
@@ -101,7 +101,7 @@ if __name__ == "__main__":
                           fg_color=("#d0d0f5", "#6a6a8f"))
     frame1.grid(row=1, columnspan=1,padx=10, pady=10)
 
-    sw1 = ctk.CTkSwitch(frame1, 
+    sw1 = ctk.CTkSwitch(frame1,
                         fg_color="red",
                         button_color="#808080",
                         progress_color="#00ff7f",
@@ -110,14 +110,14 @@ if __name__ == "__main__":
                         onvalue="on",
                         offvalue="off",
                         text="Enable Darkmode")
-    sw1.grid(row=1, columnspan=2, padx=10, pady=10)
+    sw1.grid(row=1, columnspan=2, padx=0, pady=10)
 
     entr1 = ctk.CTkEntry(master=frame1,
                          placeholder_text="Enter the first word you think of...",
                          font=('Roboto', 12),
-                         text_color=("white", "black"),
-                         placeholder_text_color="#B2BEB5",
-                         fg_color=("#36454F", "#E5E4E2"),
+                         text_color=("black", "white"),
+                         placeholder_text_color=("#899499", "#B2BEB5"),
+                         fg_color=("#E5E4E2", "#36454F"),
                          width=300)
     entr1.grid(row=2, column=1, columnspan=2, padx=10, pady=10)
 
@@ -129,7 +129,7 @@ if __name__ == "__main__":
                          hover_color="#32CD32",
                          font=('Robot', 12),
                          command=toasting)
-    btn1.grid(row=3, column=1, padx=10, pady=10)
+    btn1.grid(row=3, column=1, padx=0, pady=0)
 
     btn2 = ctk.CTkButton(master=frame1,
                          width=100,
@@ -139,17 +139,18 @@ if __name__ == "__main__":
                          hover_color="#32CD32",
                          font=('Robot', 12),
                          command=lambda: sys.exit())
-    btn2.grid(row=3, column=2, padx=10, pady=10)
+    btn2.grid(row=3, column=2, padx=0, pady=0)
 
     lbl1 = ctk.CTkLabel(master=frame1,
                         width=300,
                         height=250,
                         text="",
                         font=('Roboto', 12),
-                        fg_color=("#36454F", "#E5E4E2"),
-                        text_color=("white", "black"),
+                        fg_color=("#E5E4E2", "#36454F"),
+                        text_color=("black", "white"),
                         anchor="nw",
-                        justify="left")
+                        justify="left",
+                        corner_radius=10)
     lbl1.grid(row=4, column=1, columnspan=2, pady=10, padx=10)
     
 
