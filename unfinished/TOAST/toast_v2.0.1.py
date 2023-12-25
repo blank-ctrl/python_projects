@@ -3,7 +3,7 @@ try:
     import sys
 except ModuleNotFoundError:
     print("Not all modules are installed")
-    print("Modules needed: customtkinter")
+    print("Modules needed: customtkinter, sys")
     print("Check if these are installed on your device")
 
 # darkmode 
@@ -94,6 +94,7 @@ def toasting():
 # ui
 if __name__ == "__main__":
     app = ctk.CTk()
+    app.title("T.O.A.S.T.")
     switch_var = ctk.StringVar(value="on")
     
     #widgets
