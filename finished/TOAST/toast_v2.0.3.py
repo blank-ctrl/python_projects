@@ -34,7 +34,6 @@ def toasting():
     ingoing = entr1.get()
     new = {}
     text = ""
-    max_len = 0
     global output_text
     output_text = "\n"
     
@@ -101,7 +100,7 @@ if __name__ == "__main__":
     app.maxsize(width=420, height=395)
     app.title("T.O.A.S.T.")
     switch_var = ctk.StringVar(value="on")
-    checkbox_var = ctk.StringVar(value="on")
+    checkbox_var = ctk.StringVar(value="off")
     
     #widgets
     frame1 = ctk.CTkFrame(app,
