@@ -14,4 +14,6 @@ For information about CustomTkinter visit: https://customtkinter.tomschimansky.c
 
 I'm unable to create a stable and universal application for x86_64 and arm64 via universal2. Hence there won't be another way for anyone to use it except from running it through the terminal or creating the app by oneself using either py2app or pyinstaller. There's no other stable option to distribute this program.
 
-I'm currently working on v2.1 for a better data management with an actual database and the buttons being summed up in one class. The .db file will have to be included into the Resources folder manually by yourselves as well as the .txt file, unless I find a way to properly convey this thing a a whole. For now I just wanted to have a workingaooflication.
+I'm currently working on v2.1 for a better data management with an actual sql database and the buttons being summed up in one class. The .db file will have to be included into the Resources folder manually by yourselves as well as the .txt file, unless I find a way to properly convey this thing as a whole (which is definetly not possible with the .txt file, but might work with the datatbase). For now I just wanted to have a working application.
+
+sort_dict.py will soon be relocated.
