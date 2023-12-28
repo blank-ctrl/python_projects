@@ -1,6 +1,7 @@
 try:
     import customtkinter as ctk
     import sys
+    import os.path
 except ModuleNotFoundError:
     print("Not all modules are installed")
     print("Modules needed: customtkinter, sys")
@@ -38,9 +39,13 @@ def toasting():
     output_text = "\n"
     
     # getting stored data
-    st = open("store.txt", "r")
-    prior = st.readlines()
-    st.close()
+    if not os.path.isfile("store.txt"):
+        st = open("store.txt", "w")
+        st.close()
+    
+    stt = open("store.txt", "r")
+    prior = stt.readlines()
+    stt.close()
 
     for line in prior:
         a = ""
