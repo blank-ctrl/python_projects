@@ -1,9 +1,0 @@
-hhffffff 1
-hhfffffff 1
-hhffffffff 1
-hhfffffffff 2
-hhffffffffff 3
-hhfffffffffff 3
-hhffffffffffff 2
-hhffffffffffffff 1
-hhfffffffffffffff 2

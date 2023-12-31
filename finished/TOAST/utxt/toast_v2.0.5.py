@@ -38,11 +38,7 @@ def toasting():
     global output_text
     output_text = "\n"
     
-    # getting stored data
-    if not os.path.isfile("store.txt"):
-        st = open("store.txt", "w")
-        st.close()
-    
+    # getting stored data    
     stt = open("store.txt", "r")
     prior = stt.readlines()
     stt.close()
@@ -80,7 +76,7 @@ def toasting():
     # sorting dictionary of words in txt
     new_new = sorted(new.items(), key=lambda x:x[1], reverse=True)
     
-    # defining lenght of longest word
+    # create output
     for i in range(0,11):
         try:
             if i < 9:
@@ -100,6 +96,12 @@ def toasting():
 
 # ui
 if __name__ == "__main__":
+    # checking if .txt exists
+    if not os.path.isfile("store.txt"):
+        st = open("store.txt", "w")
+        st.close()
+
+    # main variables
     app = ctk.CTk()
     app.geometry("420x395")
     app.maxsize(width=420, height=395)
