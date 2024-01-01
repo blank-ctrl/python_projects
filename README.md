@@ -1,4 +1,4 @@
-# r_py
+# python_projects
 '''
-Random stuff with python.
+Random collection of my python projects, no matter how insignificant.
 '''
