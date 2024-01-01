@@ -1,5 +1,3 @@
-from sort_dict import *
-
 def getin(inpt):
     if inpt.isalpha(): 
         correctio = input(f'Is "{inpt.lower()}" correct? (Y/N)\n')
