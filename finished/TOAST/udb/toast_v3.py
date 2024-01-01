@@ -4,7 +4,7 @@ try:
     import sys
 except ModuleNotFoundError:
     print("Not all modules are installed")
-    print("Modules needed: customtkinter, sys")
+    print("Modules needed: customtkinter, sys, sqlite3")
     print("Check if these are installed on your device")
 
 
