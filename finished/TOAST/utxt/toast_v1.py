@@ -1,3 +1,6 @@
+# needs an existing txt file called "store.txt" in the same directory as it is run in
+# v1 will not create this file for you
+
 def getin(inpt):
     if inpt.isalpha(): 
         correctio = input(f'Is "{inpt.lower()}" correct? (Y/N)\n')
