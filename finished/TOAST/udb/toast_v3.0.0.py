@@ -38,31 +38,47 @@ def clearall():
     cur.close()
     db_con.close()
 
+# main process (toasting)
 def toasting():
+    # set output to " and get input
+    output_text = ""
     ingoing = entr1.get()
+
+    # open connection
     db_con = sql.connect("data.db")
     cur = db_con.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS list (word TEXT, count INTEGER)")
     
-    # fetch existing data
-    db_data = cur.execute("SELECT * FROM list")
-    all_data = db_data.fetchall()
-    
-    # directly commit input if db is empty
-    # update output text
-    if all_data == []:
-        cur.execute("INSERT INTO list VALUES (?, ?)", (ingoing, 1))
+    # try to fetch current count of word
+    current_val = cur.execute("SELECT count FROM list WHERE word=(:word)", (ingoing,)).fetchone()
+    if current_val == None:                                       # add word and set its copunt to 1 if word not in table
+        cur.execute("INSERT INTO list VALUES (:word, :initial)", (ingoing, 1))
         db_con.commit()
-        cur.close()
-        db_con.close()
+    else:                                                         # increment count of word if word in table
+        cur.execute("UPDATE list SET count=(:num) WHERE word=(:word)", (current_val[0]+1, ingoing))
+        db_con.commit()
 
-        lbl1.configure(text=f"1. {ingoing} (1x)")
-        return
+    # fetching all data from db and sorting it
+    db_data = cur.execute("SELECT * FROM list").fetchall()
+    db_data.sort(key=lambda x: x[1], reverse=True)
 
-    db_data = cur.execute("SELECT * FROM list")
-    all_data = db_data.fetchall()
-    print(all_data)
+    # create output
+    for i in range(11):
+        try:
+            if i < 9:
+                output_text += f"{i+1}.  {db_data[i][0]} ({db_data[i][1]}x)\n"
+                if i == 2:
+                    output_text += "Top 3 –––––\n"
 
+            elif i == 9:
+                output_text += f"{i+1}. {db_data[i][0]} ({db_data[i][1]}x)\n"
+                output_text += "Top 10 –––––\n"
+        except IndexError:
+            pass
+
+    # output
+    lbl1.configure(text=output_text)
+    
+    #close connection
     cur.close()
     db_con.close()
 
@@ -84,6 +100,10 @@ class Button:
                   pady=0)
 
 if __name__ == "__main__":
+    db_con = sql.connect("data.db")
+    cur = db_con.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS list (word TEXT, count INTEGER)")
+
     app = ctk.CTk()
     app.geometry("420x395")
     app.maxsize(width=420, height=395)
