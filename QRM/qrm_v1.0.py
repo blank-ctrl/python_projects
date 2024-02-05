@@ -64,7 +64,7 @@ if __name__ == "__main__":
     app = ctk.CTk()
     app.geometry("420x160")
     app.maxsize(width=420, height=160)
-    app.title("T.O.A.S.T.")
+    app.title("QRM")
     switch_var = ctk.StringVar(value="on")
     checkbox_var = ctk.StringVar(value="off")
     menu_var = ctk.StringVar(value="TEXT")
