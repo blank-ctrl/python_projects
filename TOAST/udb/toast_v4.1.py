@@ -16,12 +16,13 @@ def clearall():
     cur.close()
     db_con.close()
 
-    txt.configure(text="")
+    txt.configure(text="*"*50)
 
     app.update()
     max_width = frame1.winfo_width()
     max_height = frame1.winfo_height()
     app.geometry(f"{max_width+20}x{max_height+20}")
+    app.wm_maxsize((max_width+20), (max_height+20))
 
 # main process (toasting)
 def toasting():
@@ -71,6 +72,7 @@ def toasting():
     max_width = frame1.winfo_width()
     max_height = frame1.winfo_height()
     app.geometry(f"{max_width+20}x{max_height+20}")
+    app.wm_maxsize((max_width+20), (max_height+20))
 
 # ui
 class Button:
@@ -94,6 +96,7 @@ if __name__ == "__main__":
 
     app = tk.Tk()
     app.geometry("435x170")
+    app.wm_maxsize(435, 170)
     app.title("T.O.A.S.T.")
     entry_var = tk.StringVar(value="on")
     checkbox_var = tk.StringVar(value="off")
@@ -124,7 +127,7 @@ if __name__ == "__main__":
     entr1.grid(row=0, columnspan=3, padx=10, pady=10)
       
     txt = tk.Label(master=frame3,
-                   text="",
+                   text="*"*50,
                    justify="left")
     txt.grid(row=0, column=0, sticky="nw", ipadx=10, ipady=10)
     
