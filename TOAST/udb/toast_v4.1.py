@@ -93,6 +93,8 @@ if __name__ == "__main__":
     db_con = sql.connect("data.db")
     cur = db_con.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS list (word TEXT, count INTEGER)")
+    cur.close()
+    db_con.close()
 
     app = tk.Tk()
     app.geometry("435x170")
